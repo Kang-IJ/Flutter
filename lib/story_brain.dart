@@ -1,16 +1,53 @@
 import 'story.dart';
 
 class StoryBrain {
-  String getStory(int storyNum) {
-    return _storyData[storyNum].storyTitle;
+  int storyNumber = 0;
+
+  String getStory(storyNumber) {
+    return _storyData[storyNumber].storyTitle;
   }
 
-  String getChoice1(int storyNum) {
-    return _storyData[storyNum].choice1;
+  String getChoice1(storyNumber) {
+    return _storyData[storyNumber].choice1;
   }
 
-  String getChoice2(int storyNum) {
-    return _storyData[storyNum].choice2;
+  String getChoice2(storyNumber) {
+    return _storyData[storyNumber].choice2;
+  }
+
+  void nextStory(int choiceNumber) {
+    if (choiceNumber == 1) {
+      if (storyNumber == 0) {
+        storyNumber = 2;
+      } else if (storyNumber == 1) {
+        storyNumber = 2;
+      } else if (storyNumber == 2) {
+        storyNumber = 5;
+      } else if (storyNumber == 3 || storyNumber == 4 || storyNumber == 5) {
+        restart();
+      }
+    } else if (choiceNumber == 2) {
+      if (storyNumber == 0) {
+        storyNumber = 1;
+      } else if (storyNumber == 1) {
+        storyNumber = 3;
+      } else if (storyNumber == 2) {
+        storyNumber = 4;
+      } else if (storyNumber == 3 || storyNumber == 4 || storyNumber == 5) {
+        restart();
+      }
+    }
+  }
+
+  void restart() {
+    storyNumber = 0;
+  }
+
+  bool buttonShouldBeVisible() {
+    if (storyNumber == 0 || storyNumber == 1 || storyNumber == 2) {
+      return true;
+    }
+    return false;
   }
 }
 
