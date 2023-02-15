@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'coin_data.dart';
+import 'package:flutter/cupertino.dart';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -6,6 +8,16 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
+  String selectedCurrency = 'USD';
+
+  List<Text> getCurrencies() {
+    List<Text> currencyText = [];
+    for (String currency in currenciesList) {
+      currencyText.add(Text(currency));
+    }
+    return currencyText;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +31,7 @@ class _PriceScreenState extends State<PriceScreen> {
           Padding(
             padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
             child: Card(
-              color: Colors.lightBlueAccent,
+              color: Colors.grey.shade800,
               elevation: 5.0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
@@ -41,11 +53,43 @@ class _PriceScreenState extends State<PriceScreen> {
             height: 150.0,
             alignment: Alignment.center,
             padding: EdgeInsets.only(bottom: 30.0),
-            color: Colors.lightBlue,
-            child: null,
+            color: Colors.grey.shade800,
+            child: CupertinoPicker(
+              backgroundColor: Colors.grey.shade800,
+              itemExtent: 32.0,
+              onSelectedItemChanged: (selectedIndex) {},
+              children: getCurrencies(),
+            ),
           ),
         ],
       ),
     );
   }
 }
+
+// DropdownButton<String>(
+// value: selectedCurrency,
+// items: getDropdownItems(),
+// onChanged: (value) {
+// setState(() {
+// selectedCurrency = value!;
+// });
+// },
+// ),
+
+// List<DropdownMenuItem<String>> getDropdownItems() {
+//   List<DropdownMenuItem<String>> dropdownItems = [];
+//
+//   for (int i = 0; i < currenciesList.length; i++) {
+//     String currency = currenciesList[i];
+//
+//     var newItem = DropdownMenuItem<String>(
+//       child: Text(currency),
+//       value: currency,
+//     );
+//
+//     dropdownItems.add(newItem);
+//   }
+//
+//   return dropdownItems;
+// }
