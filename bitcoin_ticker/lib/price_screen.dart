@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'coin_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:io';
-import 'dart:math';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -11,7 +10,6 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'USD';
-  int rate = 0;
 
   DropdownButton<String> androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
@@ -49,21 +47,23 @@ class _PriceScreenState extends State<PriceScreen> {
     );
   }
 
-  void updateRate(dynamic coinData) {
-    setState(() async {
-      if (coinData == null) {
-        rate = 0;
-      }
-      double doubleRate = await coinData['rate'];
-      rate = doubleRate.toInt();
-    });
+  String coinRate = '?';
+
+  void getData() async {
+    try {
+      double doubleCoinRate = await CoinData().getCoinData();
+      setState(() {
+        coinRate = doubleCoinRate.toStringAsFixed(0);
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
   void initState() {
-    var coinData = CoinData().getCoinData();
     super.initState();
-    updateRate(coinData);
+    getData();
   }
 
   @override
@@ -87,7 +87,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 BTC = $rate USD',
+                  '1 BTC = $coinRate USD',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,

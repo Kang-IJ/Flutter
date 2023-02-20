@@ -33,17 +33,23 @@ const List<String> cryptoList = [
   'LTC',
 ];
 
+const coinApiURL = 'https://rest.coinapi.io/v1/exchangerate';
+
 class CoinData {
   APIKey api = APIKey();
 
-  Future<dynamic> getCoinData() async {
-    var coinData;
-    http.Response response = await http.get(Uri.parse(
-        'https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=${api.apiKey}'));
-    if (response.statusCode == 200) {
-      coinData = jsonDecode(response.body);
-    }
+  Future getCoinData() async {
+    String requestURL = '$coinApiURL/BTC/USD?apikey=${api.apiKey}';
 
-    return coinData;
+    http.Response response = await http.get(Uri.parse(requestURL));
+    if (response.statusCode == 200) {
+      var decodedData = jsonDecode(response.body);
+      var coinRate = decodedData['rate'];
+
+      return coinRate;
+    } else {
+      print(response.statusCode);
+      throw Exception('Failed to get coin data.');
+    }
   }
 }
