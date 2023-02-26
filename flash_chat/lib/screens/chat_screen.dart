@@ -1,7 +1,7 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/components/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatScreen extends StatefulWidget {
   static const String id = 'chat_screen';
@@ -10,8 +10,11 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final CollectionReference _firestore =
+      FirebaseFirestore.instance.collection('messages');
   final _auth = FirebaseAuth.instance;
   User? loggedInUser;
+  String messageText = '';
 
   @override
   void initState() {
@@ -25,7 +28,6 @@ class _ChatScreenState extends State<ChatScreen> {
       final user = await _auth.currentUser;
       if (user != null) {
         loggedInUser = user;
-        print(loggedInUser?.email);
       }
     } catch (e) {
       print(e);
@@ -34,14 +36,25 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> addMessages() {
+      return _firestore
+          .add({
+            'text': messageText,
+            'sender': loggedInUser!.email,
+          })
+          .then((value) => print("Message Added"))
+          .catchError((error) => print("Failed to add message: $error"));
+    }
+
     return Scaffold(
       appBar: AppBar(
         leading: null,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.close),
-              onPressed: () {
-                //Implement logout functionality
+              icon: Icon(Icons.logout),
+              onPressed: () async {
+                await _auth.signOut();
+                Navigator.pop(context);
               }),
         ],
         title: Text('⚡️Chat'),
@@ -60,15 +73,13 @@ class _ChatScreenState extends State<ChatScreen> {
                   Expanded(
                     child: TextField(
                       onChanged: (value) {
-                        //Do something with the user input.
+                        messageText = value;
                       },
                       decoration: messageTextFieldDecoration,
                     ),
                   ),
                   TextButton(
-                    onPressed: () {
-                      //Implement send functionality.
-                    },
+                    onPressed: addMessages,
                     child: Text(
                       'Send',
                       style: sendButtonTextStyle,
