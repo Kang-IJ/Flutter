@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
-import 'widgets/tasks_list.dart';
+import 'package:todoey/widgets/tasks_list.dart';
+import 'add_task_screen.dart';
 
 class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
+      backgroundColor: Colors.blueGrey,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Colors.blueGrey,
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+                child: Container(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: AddTaskScreen(),
+            )),
+          );
+        },
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,7 +35,7 @@ class TasksScreen extends StatelessWidget {
                 CircleAvatar(
                   child: Icon(
                     Icons.list,
-                    color: Colors.lightBlueAccent,
+                    color: Colors.blueGrey,
                     size: 30.0,
                   ),
                   backgroundColor: Colors.white,
