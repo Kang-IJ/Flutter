@@ -6,64 +6,64 @@ class TaskTile extends StatefulWidget {
 }
 
 class _TaskTileState extends State<TaskTile> {
-  bool isChecked = false;
-
-  // void checkboxCallback(bool checkboxState) {
-  //   setState(() {
-  //     isChecked = checkboxState!;
-  //   });
-  // }
+  bool? isChecked = false;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
         'Task',
-        // style: TextStyle(
-        //   decoration:
-        //       isChecked ? TextDecoration.lineThrough : TextDecoration.none,
-        //   color: isChecked ? Colors.grey.shade600 : null,
-        // ),
+        style: TextStyle(
+          decoration: isChecked == true ? TextDecoration.lineThrough : null,
+          color: isChecked == true ? Colors.grey.shade500 : null,
+        ),
       ),
-      // trailing: TaskCheckbox(isChecked, checkboxCallback),
-      trailing: TaskCheckbox(),
+      trailing: TaskCheckbox(
+        checkboxState: isChecked,
+        toggleCheckboxState: (bool? checkboxState) {
+          setState(() {
+            isChecked = checkboxState!;
+          });
+        },
+      ),
     );
   }
 }
 
-class TaskCheckbox extends StatefulWidget {
-  @override
-  State<TaskCheckbox> createState() => _TaskCheckboxState();
-}
+class TaskCheckbox extends StatelessWidget {
+  late final bool? checkboxState;
+  late final Function(bool?) toggleCheckboxState;
 
-class _TaskCheckboxState extends State<TaskCheckbox> {
-  bool isChecked = false;
+  TaskCheckbox({this.checkboxState, required this.toggleCheckboxState});
 
   @override
   Widget build(BuildContext context) {
     return Checkbox(
       activeColor: Colors.blueGrey,
-      value: isChecked,
-      onChanged: (checkboxState) {
-        setState(() {
-          isChecked = checkboxState!;
-        });
-      },
+      value: checkboxState,
+      onChanged: toggleCheckboxState,
     );
   }
 }
 
-// class TaskCheckbox extends StatelessWidget {
-//   late final bool checkboxState;
-//   late final toggleCheckboxState;
+// class TaskCheckbox extends StatefulWidget {
+//   @override
+//   State<TaskCheckbox> createState() => _TaskCheckboxState();
+// }
+
+// class _TaskCheckboxState extends State<TaskCheckbox> {
+//   bool isChecked = false;
 //
-//   TaskCheckbox(this.checkboxState, this.toggleCheckboxState);
 //   @override
 //   Widget build(BuildContext context) {
 //     return Checkbox(
 //       activeColor: Colors.blueGrey,
-//       value: checkboxState,
-//       onChanged: toggleCheckboxState,
+//       value: isChecked,
+//       onChanged: (checkboxState) {
+//         setState(() {
+//           isChecked = checkboxState!;
+//         });
+//       },
 //     );
 //   }
 // }
