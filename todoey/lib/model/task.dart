@@ -1,5 +1,6 @@
 class Task {
-  late final String name;
+  static List<String?> tasks = [];
+  late final String? name;
   late bool isDone;
 
   Task({required this.name, this.isDone = false});

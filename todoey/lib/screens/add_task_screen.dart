@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/model/task.dart';
 
 class AddTaskScreen extends StatelessWidget {
+  String? addedTask;
+  Function addTaskFunction;
+  static TextEditingController controller = TextEditingController();
+
+  AddTaskScreen({required this.addTaskFunction});
+
   @override
   Widget build(BuildContext context) {
     Color getColor(Set<MaterialState> states) {
@@ -26,6 +33,10 @@ class AddTaskScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.blueGrey, fontSize: 25.0),
               ),
               TextField(
+                controller: controller,
+                onChanged: (value) {
+                  addedTask = value;
+                },
                 textAlign: TextAlign.center,
                 autofocus: true,
                 decoration: InputDecoration(
@@ -40,7 +51,12 @@ class AddTaskScreen extends StatelessWidget {
               SizedBox(
                 height: 50.0,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Task.tasks.add(addedTask);
+                    addTaskFunction();
+                    controller.clear();
+                    Navigator.pop(context);
+                  },
                   style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.resolveWith(getColor)),

@@ -1,8 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/widgets/tasks_list.dart';
+import 'package:todoey/widgets/task_tile.dart';
 import 'add_task_screen.dart';
+import 'package:todoey/model/task.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<String?> addedTasks = [];
+  List<Task> tasks = [];
+
+  void addTaskFunction() {
+    setState(() {
+      addedTasks = Task.tasks;
+      tasks.add(addedTasks.isEmpty
+          ? Task(name: Task.tasks[0], isDone: false)
+          : Task(name: addedTasks[addedTasks.length - 1], isDone: false));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,11 +33,12 @@ class TasksScreen extends StatelessWidget {
             context: context,
             isScrollControlled: true,
             builder: (context) => SingleChildScrollView(
-                child: Container(
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: AddTaskScreen(),
-            )),
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: AddTaskScreen(addTaskFunction: addTaskFunction),
+              ),
+            ),
           );
         },
       ),
@@ -72,7 +91,20 @@ class TasksScreen extends StatelessWidget {
                   topLeft: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(),
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return TaskTile(
+                    taskTitle: tasks[index].name!,
+                    isChecked: tasks[index].isDone,
+                    checkboxCallback: (bool? checkboxState) {
+                      setState(() {
+                        tasks[index].toggleDone();
+                      });
+                    },
+                  );
+                },
+                itemCount: tasks.length,
+              ),
             ),
           ),
         ],
@@ -80,3 +112,18 @@ class TasksScreen extends StatelessWidget {
     );
   }
 }
+
+// return ListView.builder(
+//   itemBuilder: (context, index) {
+//     return TaskTile(
+//       taskTitle: tasks[index].name,
+//       isChecked: tasks[index].isDone,
+//       checkboxCallback: (bool? checkboxState) {
+//         setState(() {
+//           tasks[index].toggleDone();
+//         });
+//       },
+//     );
+//   },
+//   itemCount: tasks.length,
+// );
