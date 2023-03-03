@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/widgets/task_tile.dart';
+import 'package:todoey/widgets/tasks_list.dart';
 import 'add_task_screen.dart';
 import 'package:todoey/model/task.dart';
 
@@ -15,9 +15,7 @@ class _TasksScreenState extends State<TasksScreen> {
   void addTaskFunction() {
     setState(() {
       addedTasks = Task.tasks;
-      tasks.add(addedTasks.isEmpty
-          ? Task(name: Task.tasks[0], isDone: false)
-          : Task(name: addedTasks[addedTasks.length - 1], isDone: false));
+      tasks.add(Task(name: addedTasks[addedTasks.length - 1]));
     });
   }
 
@@ -72,7 +70,9 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 Text(
-                  '12 Tasks',
+                  addedTasks.length < 2
+                      ? '${addedTasks.length} Task'
+                      : '${addedTasks.length} Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -91,20 +91,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   topLeft: Radius.circular(20.0),
                 ),
               ),
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return TaskTile(
-                    taskTitle: tasks[index].name!,
-                    isChecked: tasks[index].isDone,
-                    checkboxCallback: (bool? checkboxState) {
-                      setState(() {
-                        tasks[index].toggleDone();
-                      });
-                    },
-                  );
-                },
-                itemCount: tasks.length,
-              ),
+              child: TasksList(tasks),
             ),
           ),
         ],
@@ -112,18 +99,3 @@ class _TasksScreenState extends State<TasksScreen> {
     );
   }
 }
-
-// return ListView.builder(
-//   itemBuilder: (context, index) {
-//     return TaskTile(
-//       taskTitle: tasks[index].name,
-//       isChecked: tasks[index].isDone,
-//       checkboxCallback: (bool? checkboxState) {
-//         setState(() {
-//           tasks[index].toggleDone();
-//         });
-//       },
-//     );
-//   },
-//   itemCount: tasks.length,
-// );
