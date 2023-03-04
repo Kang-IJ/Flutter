@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:todoey/model/task.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  String? addedTask;
-  Function addTaskFunction;
-  static TextEditingController controller = TextEditingController();
+  final Function addTaskCallback;
+  TextEditingController controller = TextEditingController();
 
-  AddTaskScreen({required this.addTaskFunction});
+  AddTaskScreen(this.addTaskCallback);
 
   @override
   Widget build(BuildContext context) {
+    String? addedTask;
     Color getColor(Set<MaterialState> states) {
       return Colors.blueGrey;
     }
@@ -52,8 +52,7 @@ class AddTaskScreen extends StatelessWidget {
                 height: 50.0,
                 child: TextButton(
                   onPressed: () {
-                    Task.tasks.add(addedTask);
-                    addTaskFunction();
+                    addTaskCallback(addedTask);
                     controller.clear();
                     Navigator.pop(context);
                   },

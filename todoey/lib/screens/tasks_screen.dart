@@ -9,15 +9,7 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  List<String?> addedTasks = [];
   List<Task> tasks = [];
-
-  void addTaskFunction() {
-    setState(() {
-      addedTasks = Task.tasks;
-      tasks.add(Task(name: addedTasks[addedTasks.length - 1]));
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +26,11 @@ class _TasksScreenState extends State<TasksScreen> {
               child: Container(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: AddTaskScreen(addTaskFunction: addTaskFunction),
+                child: AddTaskScreen((addedTask) {
+                  setState(() {
+                    tasks.add(Task(name: addedTask));
+                  });
+                }),
               ),
             ),
           );
@@ -70,9 +66,9 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 Text(
-                  addedTasks.length < 2
-                      ? '${addedTasks.length} Task'
-                      : '${addedTasks.length} Tasks',
+                  tasks.length < 2
+                      ? '${tasks.length} Task'
+                      : '${tasks.length} Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,

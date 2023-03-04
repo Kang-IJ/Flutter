@@ -3,7 +3,7 @@ import 'task_tile.dart';
 import 'package:todoey/model/task.dart';
 
 class TasksList extends StatefulWidget {
-  List<Task> tasks;
+  final List<Task> tasks;
   TasksList(this.tasks);
 
   @override

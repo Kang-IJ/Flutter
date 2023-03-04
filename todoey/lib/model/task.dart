@@ -1,5 +1,4 @@
 class Task {
-  static List<String?> tasks = [];
   late final String? name;
   late bool isDone;
 
