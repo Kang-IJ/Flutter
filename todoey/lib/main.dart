@@ -9,8 +9,11 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: TasksScreen(),
+    return Provider(
+      create: (_) => MyApp(),
+      child: MaterialApp(
+        home: TasksScreen(),
+      ),
     );
   }
 }
