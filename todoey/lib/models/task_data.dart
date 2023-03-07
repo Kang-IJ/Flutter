@@ -24,7 +24,7 @@ class TaskData with ChangeNotifier {
   }
 
   void removeTasks(Task task) {
-    _tasks.removeWhere((tasks) => tasks == task);
+    _tasks.remove(task);
     notifyListeners();
   }
 }
