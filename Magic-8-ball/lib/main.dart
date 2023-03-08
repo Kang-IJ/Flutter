@@ -5,7 +5,7 @@ void main() {
   runApp(
     MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.blueGrey.shade300,
         appBar: AppBar(
           title: Text('Magic 8 Ball'),
           backgroundColor: Colors.blueGrey.shade800,
@@ -17,14 +17,13 @@ void main() {
 }
 
 class MagicBall extends StatefulWidget {
-  const MagicBall({Key? key}) : super(key: key);
-
   @override
   State<MagicBall> createState() => _MagicBallState();
 }
 
 class _MagicBallState extends State<MagicBall> {
   int ballNum = 1;
+
   @override
   Widget build(BuildContext context) {
     return Center(
