@@ -54,31 +54,30 @@ class StoryBrain {
 List<Story> _storyData = [
   Story(
       storyTitle:
-          'Your car has blown a tire on a winding road in the middle of nowhere with no cell phone reception. You decide to hitchhike. A rusty pickup truck rumbles to a stop next to you. A man with a wide brimmed hat with soulless eyes opens the passenger door for you and asks: "Need a ride, boy?".',
-      choice1: 'I\'ll hop in. Thanks for the help!',
-      choice2: 'Better ask him if he\'s a murderer first.'),
+          '휴대폰 신호가 잡히지 않는 한적하고 구불구불한 길에서 당신 차의 타이어가 터졌습니다. 당신은 히치하이크를 하기로 결정합니다. 녹슨 픽업트럭이 부릉거리며 당신 옆에 멈춥니다. 영혼 없는 눈을 가진 챙이 넓은 모자를 쓴 남자가 당신을 위해 조수석 문을 열고 "태워줄까, 얘야? "라고 묻습니다.',
+      choice1: '탈게요. 도와주셔서 감사해요!',
+      choice2: '그가 살인자인지 먼저 물어봐야겠어.'),
   Story(
-      storyTitle: 'He nods slowly, unphased by the question.',
-      choice1: 'At least he\'s honest. I\'ll climb in.',
-      choice2: 'Wait, I know how to change a tire.'),
-  Story(
-      storyTitle:
-          'As you begin to drive, the stranger starts talking about his relationship with his mother. He gets angrier and angrier by the minute. He asks you to open the glovebox. Inside you find a bloody knife, two severed fingers, and a cassette tape of Elton John. He reaches for the glove box.',
-      choice1: 'I love Elton John! Hand him the cassette tape.',
-      choice2: 'It\'s him or me! You take the knife and stab him.'),
+      storyTitle: '질문에 동요하지 않은채 그는 천천히 고개를 끄덕인다.',
+      choice1: '정직하긴 하네. 차에 타야겠어.',
+      choice2: '잠깐, 나 타이어 어떻게 가는지 알잖아.'),
   Story(
       storyTitle:
-          'What? Such a cop out! Did you know traffic accidents are the second leading cause of accidental death for most adult age groups?',
+          '그와 같이 차를 타고 가는데, 그가 어머니와의 관계에 대해 이야기하기 시작합니다. 그는 화를 내더니 점점 더 화를 내기 시작합니다. 그리고는 조수석 서랍을 열어달라고 합니다. 서랍 내부에는 피 묻은 칼, 잘린 손가락 두개, 엘튼존의 카세트테이프가 있습니다. 그가 서랍에 손을 뻗습니다.',
+      choice1: '나도 엘튼존 팬인데! 그에게 카세트 테이프를 건네준다.',
+      choice2: '죽기 아니면 살기다! 칼을 가져가서 그를 찌른다.'),
+  Story(
+      storyTitle: '뭐라고요? 교통사고가 성인 사고사의 두번째 주요 원인이라는 것을 알고계셨나요?',
+      choice1: '다시 시작',
+      choice2: ''),
+  Story(
+      storyTitle:
+          '가드레일에 부딪혀 떨어지며 아래의 바위를 향해 돌진하면서 당신은 차를 운전하고 있는 사람을 찌르는 것은 좋은 생각이 아니었다고 생각합니다.',
       choice1: 'Restart',
       choice2: ''),
   Story(
       storyTitle:
-          'As you smash through the guardrail and careen towards the jagged rocks below you reflect on the dubious wisdom of stabbing someone while they are driving a car you are in.',
-      choice1: 'Restart',
-      choice2: ''),
-  Story(
-      storyTitle:
-          'You bond with the murderer while crooning verses of "Can you feel the love tonight". He drops you off at the next town. Before you go he asks you if you know any good places to dump bodies. You reply: "Try the pier".',
+          '당신은 살인자와 유대감을 형성하고 그는 당신을 다음 마을에서 내려줍니다. 당신이 가기 전에 그가 시체를 버릴 좋은 장소를 아느냐고 묻습니다. 당신은 "부두가 어떨까요"라고 대답합니다.',
       choice1: 'Restart',
       choice2: '')
 ];

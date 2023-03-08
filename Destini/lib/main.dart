@@ -32,7 +32,7 @@ class _StoryPageState extends State<StoryPage> {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('images/background.png'),
+            image: AssetImage('images/cloud.jpg'),
           ),
         ),
         padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
@@ -47,7 +47,7 @@ class _StoryPageState extends State<StoryPage> {
                   child: Text(
                     storyBrain.getStory(storyBrain.storyNumber),
                     style: TextStyle(
-                      fontSize: 25.0,
+                      fontSize: 23.0,
                     ),
                   ),
                 ),
