@@ -73,11 +73,11 @@ List<Story> _storyData = [
   Story(
       storyTitle:
           '가드레일에 부딪혀 떨어지며 아래의 바위를 향해 돌진하면서 당신은 차를 운전하고 있는 사람을 찌르는 것은 좋은 생각이 아니었다고 생각합니다.',
-      choice1: 'Restart',
+      choice1: '다시 시작',
       choice2: ''),
   Story(
       storyTitle:
           '당신은 살인자와 유대감을 형성하고 그는 당신을 다음 마을에서 내려줍니다. 당신이 가기 전에 그가 시체를 버릴 좋은 장소를 아느냐고 묻습니다. 당신은 "부두가 어떨까요"라고 대답합니다.',
-      choice1: 'Restart',
+      choice1: '다시 시작',
       choice2: '')
 ];
