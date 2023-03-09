@@ -33,38 +33,50 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  void checkAnswer(bool userPickedAnswer) {
-    bool correctAnswer = quizBrain.getQuestionAnswer();
-
-    setState(() {
-      if (quizBrain.isFinished() == true) {
-        Alert(
-                context: context,
-                type: AlertType.success,
-                title: 'WELL DONE!',
-                desc: 'You\'ve reached the end of the quiz!')
-            .show();
-        quizBrain.reset();
-        scoreKeeper = [];
-      } else {
-        if (userPickedAnswer == correctAnswer) {
-          scoreKeeper.add(Icon(
-            Icons.check,
-            color: Colors.green,
-          ));
-        } else {
-          scoreKeeper.add(Icon(
-            Icons.close,
-            color: Colors.red,
-          ));
-        }
-        quizBrain.nextQuestion();
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    List<DialogButton> button = [
+      DialogButton(
+          child: Text(
+            '다시 시작',
+            style: TextStyle(color: Colors.white),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          }),
+    ];
+
+    void checkAnswer(bool userPickedAnswer) {
+      bool correctAnswer = quizBrain.getQuestionAnswer();
+
+      setState(() {
+        if (quizBrain.isFinished() == true) {
+          Alert(
+            context: context,
+            type: AlertType.success,
+            title: '잘하셨어요!',
+            desc: '마지막 퀴즈에 도달하셨네요!',
+            buttons: button,
+          ).show();
+          quizBrain.reset();
+          scoreKeeper = [];
+        } else {
+          if (userPickedAnswer == correctAnswer) {
+            scoreKeeper.add(Icon(
+              Icons.check,
+              color: Colors.green,
+            ));
+          } else {
+            scoreKeeper.add(Icon(
+              Icons.close,
+              color: Colors.red,
+            ));
+          }
+          quizBrain.nextQuestion();
+        }
+      });
+    }
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -96,7 +108,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               child: Text(
-                'True',
+                '진실',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
@@ -121,7 +133,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               child: Text(
-                'False',
+                '거짓',
                 style: TextStyle(
                   fontSize: 20.0,
                   color: Colors.white,

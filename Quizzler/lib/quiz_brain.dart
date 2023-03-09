@@ -4,31 +4,19 @@ class QuizBrain {
   int _questionNumber = 0;
 
   List<Question> _questionBank = [
-    Question('Some cats are actually allergic to humans', true),
-    Question('You can lead a cow down stairs but not up stairs.', false),
-    Question('Approximately one quarter of human bones are in the feet.', true),
-    Question('A slug\'s blood is green.', true),
-    Question('Buzz Aldrin\'s mother\'s maiden name was \"Moon\".', true),
-    Question('It is illegal to pee in the Ocean in Portugal.', true),
-    Question(
-        'No piece of square dry paper can be folded in half more than 7 times.',
-        false),
-    Question(
-        'In London, UK, if you happen to die in the House of Parliament, you are technically entitled to a state funeral, because the building is considered too sacred a place.',
-        true),
-    Question(
-        'The loudest sound produced by any animal is 188 decibels. That animal is the African Elephant.',
-        false),
-    Question(
-        'The total surface area of two human lungs is approximately 70 square metres.',
-        true),
-    Question('Google was originally called \"Backrub\".', true),
-    Question(
-        'Chocolate affects a dog\'s heart and nervous system; a few ounces are enough to kill a small dog.',
-        true),
-    Question(
-        'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
-        true),
+    Question('몇몇의 고양이들은 사람에게 알레르기가 있다.', true),
+    Question('소를 계단 아래로 이끌 수는 있지만 계단 위로 올라가게 할 수는 없다.', false),
+    Question('인간 뼈의 약 1/4이 발에 있다.', true),
+    Question('민달팽이의 피는 녹색이다.', true),
+    Question('고양이는 자신의 이름을 알아들을 수 있으나 무시하는 경우가 많다.', true),
+    Question('포르투갈에서는 바다에서 오줌을 싸는 것이 불법이다.', true),
+    Question('낙타의 혹은 대부분 물로 차있다.', false),
+    Question('달팽이도 이빨이 있다.', true),
+    Question('물고기는 기침을 하지 않는다', false),
+    Question('인간 폐 두 개의 전체 표면적은 약 70제곱미터이다.', true),
+    Question('Google은 원래 \"Backrub\"이라고 불렸다.', true),
+    Question('물고기는 귀가 없다.', false),
+    Question('뱀은 뒤로 갈 수 없다.', true),
   ];
 
   void nextQuestion() {
