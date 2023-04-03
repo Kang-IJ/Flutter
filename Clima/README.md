@@ -8,4 +8,4 @@ Clima shows the weather for your current location, and you can also search for t
 
 <br />
 
-![studio64_rhBf6SWXIA](https://user-images.githubusercontent.com/70733389/223948640-4ef7e3b7-6dbe-438f-8266-eb97768fcff6.gif)
+![studio64_uoBr1bYVir](https://user-images.githubusercontent.com/70733389/229540817-748cad33-f0df-48e4-81e2-048b7e81fea7.gif)
